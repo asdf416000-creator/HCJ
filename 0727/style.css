@@ -100,10 +100,10 @@
     }
 
     ul li:nth-child(1)::before {
-        content: url('../images/ico_mobile.png');
+        content: url('ico_mobile.png');
     }
     ul li:nth-child(2)::before {
-        content: url('../images/ico_email.png');
+        content: url('ico_email.png');
     }
 
     #skill ol {
