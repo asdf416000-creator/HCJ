@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>나의 최애 아이돌 &amp; 연예인 자랑하기</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#d1c2d2",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed-variant": "#544600",
+            "error": "#ba1a1a",
+            "tertiary-container": "#c4a500",
+            "surface-variant": "#e1e3e4",
+            "primary": "#8839af",
+            "secondary-fixed": "#e2e2e2",
+            "secondary-fixed-dim": "#c6c6c7",
+            "primary-fixed-dim": "#e9b3ff",
+            "surface-container-high": "#e7e8e9",
+            "surface-tint": "#8839af",
+            "tertiary-fixed-dim": "#e9c400",
+            "surface-container-highest": "#e1e3e4",
+            "inverse-on-surface": "#f0f1f2",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary": "#5d5f5f",
+            "surface-container-low": "#f3f4f5",
+            "on-surface-variant": "#4e4351",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#1a1c1c",
+            "on-tertiary-fixed": "#221b00",
+            "tertiary-fixed": "#ffe16d",
+            "on-tertiary-container": "#483b00",
+            "primary-container": "#d885ff",
+            "on-primary-fixed": "#310048",
+            "tertiary": "#705d00",
+            "surface-container": "#edeeef",
+            "on-secondary-fixed-variant": "#454747",
+            "error-container": "#ffdad6",
+            "surface-bright": "#f8f9fa",
+            "on-background": "#191c1d",
+            "surface-dim": "#d9dadb",
+            "on-primary-fixed-variant": "#6e1b95",
+            "outline": "#807382",
+            "background": "#f8f9fa",
+            "on-error-container": "#93000a",
+            "surface": "#f8f9fa",
+            "on-error": "#ffffff",
+            "inverse-primary": "#e9b3ff",
+            "primary-fixed": "#f7d8ff",
+            "on-surface": "#191c1d",
+            "on-primary-container": "#620789",
+            "secondary-container": "#dfe0e0",
+            "on-secondary-container": "#616363",
+            "inverse-surface": "#2e3132"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-padding": "20px",
+            "xl": "40px",
+            "lg": "24px",
+            "md": "16px",
+            "gutter": "16px",
+            "xs": "4px",
+            "xxl": "64px",
+            "sm": "8px",
+            "unit": "4px"
+          },
+          "fontFamily": {
+            "body-lg": ["Be Vietnam Pro"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "body-md": ["Be Vietnam Pro"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "label-sm": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "1.3", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Be Vietnam Pro', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-title, .font-display, .font-label { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .soft-shadow {
+      box-shadow: 0px 10px 30px rgba(216, 133, 255, 0.15);
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(233,179,255,0.2) 0%, rgba(248,249,250,1) 100%);
+    }
+    .button-gradient {
+      background: linear-gradient(90deg, #d885ff, #8839af);
+    }
+    .secret-box {
+      background-color: rgba(243, 244, 245, 0.6);
+      border: 1.5px dashed #d1c2d2;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_10px_30px_rgba(216,133,255,0.08)]">
+    <div class="flex justify-between items-center px-container-padding h-16 w-full max-w-7xl mx-auto">
+      <div class="flex items-center gap-4">
+        <span class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary dark:text-primary-fixed-dim">
+          나의 최애 아이돌 &amp; 연예인 자랑하기
+        </span>
+      </div>
+      <nav class="hidden md:flex gap-lg items-center">
+        <a class="font-title-md text-title-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1" href="#">자랑하기</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="flex-grow pt-[100px] pb-xxl px-container-padding flex flex-col items-center">
+    <!-- Hero Section -->
+    <section class="w-full max-w-4xl text-center mb-xl relative py-xl hero-gradient rounded-3xl overflow-hidden soft-shadow border border-surface-container-high">
+      <div class="relative z-10 px-md">
+        <div class="flex justify-center items-center gap-sm mb-sm text-primary">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+        </div>
+        <h1 class="font-display-lg text-display-lg text-primary mb-md">
+          당신의 최애를 마음껏 자랑해보세요!
+        </h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+          세상에 단 하나뿐인 나의 최애. 우리 함께 이야기해요.
+        </p>
+      </div>
+      <div class="absolute top-0 left-0 w-64 h-64 bg-primary-fixed-dim rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-1/2 translate-y-1/2"></div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="w-full max-w-3xl glass-panel soft-shadow rounded-[24px] p-lg md:p-xl relative" id="formSection">
+      <form class="flex flex-col gap-lg relative z-10" onsubmit="handleFormSubmit(event)">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+          <!-- Nickname -->
+          <div class="flex flex-col gap-xs">
+            <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="nickname">
+              <span class="material-symbols-outlined text-[16px]">person</span> 작성자 (닉네임)
+            </label>
+            <input class="w-full bg-[#f8f9fa] border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="nickname" name="nickname" placeholder="미입력 시 익명으로 등록됩니다" type="text"/>
+          </div>
+          <!-- Idol Name -->
+          <div class="flex flex-col gap-xs">
+            <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="idolName">
+              <span class="material-symbols-outlined text-[16px]">star</span> 최애 이름/그룹 <span class="text-error">*</span>
+            </label>
+            <input class="w-full bg-[#f8f9fa] border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="idolName" name="idolName" placeholder="자랑하고 싶은 최애는 누구인가요?" required type="text"/>
+          </div>
+          <!-- Fandom Start -->
+          <div class="flex flex-col gap-xs md:col-span-2">
+            <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="startDate">
+              <span class="material-symbols-outlined text-[16px]">event</span> 입덕 시기 <span class="text-error">*</span>
+            </label>
+            <input class="w-full bg-[#f8f9fa] border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="startDate" name="startDate" placeholder="예: 2022년 여름, 데뷔 때부터 등" required type="text"/>
+          </div>
+        </div>
+
+        <hr class="border-surface-variant my-sm"/>
+
+        <!-- Reason -->
+        <div class="flex flex-col gap-xs">
+          <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="reason">
+            <span class="material-symbols-outlined text-[16px]">auto_awesome</span> 입덕 계기 <span class="text-error">*</span>
+          </label>
+          <textarea class="w-full bg-[#f8f9fa] border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-y" id="reason" name="reason" placeholder="어떤 계기로 푹 빠지게 되었나요?" required rows="3"></textarea>
+        </div>
+
+        <!-- Charm Point -->
+        <div class="flex flex-col gap-xs">
+          <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="charmPoint">
+            <span class="material-symbols-outlined text-[16px]">recommend</span> 최애 매력포인트 / 추천작
+          </label>
+          <textarea class="w-full bg-[#f8f9fa] border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-y" id="charmPoint" name="charmPoint" placeholder="나만 알기 아까운 매력 포인트나 꼭 봐야할 영상/무대를 추천해주세요!" rows="3"></textarea>
+        </div>
+
+        <!-- Message -->
+        <div class="flex flex-col gap-xs">
+          <label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="message">
+            <span class="material-symbols-outlined text-[16px]">mail</span> 최애에게 한마디
+          </label>
+          <textarea class="w-full bg-[#f8f9fa] border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-y" id="message" name="message" placeholder="최애에게 전하고 싶은 따뜻한 응원의 메시지를 남겨주세요." rows="4"></textarea>
+        </div>
+
+        <!-- Secret Message -->
+        <div class="flex flex-col gap-xs p-md rounded-xl relative overflow-hidden secret-box">
+          <div class="absolute top-0 right-0 p-sm opacity-20">
+            <span class="material-symbols-outlined text-4xl">lock</span>
+          </div>
+          <label class="font-label-sm text-label-sm text-primary flex items-center gap-xs relative z-10" for="secretMessage">
+            <span class="material-symbols-outlined text-[16px]">lock_person</span> 몰래 하고 싶은 말 (비밀 속마음)
+          </label>
+          <p class="text-[12px] text-on-surface-variant mb-2 relative z-10">나만의 비밀 메시지입니다.</p>
+          <textarea class="w-full bg-surface-container-lowest border-transparent rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-y relative z-10" id="secretMessage" name="secretMessage" placeholder="혼자만 간직하고 싶은 덕질 일기를 적어보세요." rows="2"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-md flex flex-col items-center">
+          <button id="submitBtn" class="group relative px-xl py-4 rounded-full button-gradient text-on-primary font-title-md text-title-md flex items-center gap-sm shadow-[0_8px_20px_rgba(136,57,175,0.3)] hover:shadow-[0_12px_25px_rgba(136,57,175,0.4)] hover:-translate-y-0.5 transition-all duration-300" type="submit">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            <span id="btnText">마음 전송하기</span>
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+          </button>
+          <p id="errorMsg" class="text-error text-sm mt-3 hidden font-medium">전송 중 오류가 발생했습니다. 다시 시도해주세요.</p>
+        </div>
+      </form>
+    </section>
+
+    <!-- Success / Done Section -->
+    <section class="w-full max-w-3xl glass-panel soft-shadow rounded-[24px] p-lg md:p-xl relative hidden text-center" id="doneSection">
+      <div class="flex flex-col items-center justify-center gap-md py-xl">
+        <div class="text-primary-container text-6xl mb-sm animate-bounce">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 64px;">volunteer_activism</span>
+        </div>
+        <h2 class="font-display-lg text-headline-lg text-primary mb-2">마음이 성공적으로 전송되었습니다!</h2>
+        <p class="font-body-md text-on-surface-variant max-w-md mx-auto mb-lg">작성하신 팬레터는 소중히 간직될 거예요. 자랑스러운 최애 페이지 링크를 다른 사람들에게도 공유해보세요.</p>
+
+        <!-- QR & Share Section -->
+        <div class="w-full max-w-md mx-auto bg-surface-container-lowest border border-outline-variant rounded-2xl p-md mt-sm flex flex-col gap-md items-center">
+          <h3 class="font-title-md text-primary flex items-center gap-xs">
+            <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span> 페이지 링크 공유하기
+          </h3>
+          <div class="w-48 h-48 border border-surface-variant p-2 rounded-xl bg-white soft-shadow mb-2">
+            <img id="qrImg" alt="QR Code for sharing" class="w-full h-full object-contain" src=""/>
+          </div>
+          <div class="flex w-full gap-2">
+            <input id="shareUrlInput" class="flex-grow bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2 text-sm text-on-surface-variant outline-none" readonly="" type="text" value=""/>
+            <button id="copyBtn" onclick="copyShareUrl()" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm whitespace-nowrap">
+              복사
+            </button>
+          </div>
+        </div>
+
+        <button onclick="resetForm()" class="mt-4 text-sm text-primary font-semibold underline hover:text-primary-container">
+          다른 최애도 추가로 자랑하기
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-low dark:bg-surface-container-highest w-full py-xl mt-xxl flex flex-col items-center gap-md px-container-padding text-center pb-24 md:pb-xl">
+    <div class="font-title-md text-title-md font-bold text-primary mb-sm">
+      나의 최애 아이돌 자랑하기
+    </div>
+    <p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed mt-md">
+      © 2026 推しは誰. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    // 현재 웹앱 URL을 감지하여 QR 및 공유 주소 동적 렌더링
+    window.addEventListener('DOMContentLoaded', function() {
+      const currentUrl = window.location.href;
+      document.getElementById('shareUrlInput').value = currentUrl;
+      document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(currentUrl);
+    });
+
+    // 스프레드시트 데이터 전송 핸들러
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const errorMsg = document.getElementById('errorMsg');
+
+      submitBtn.disabled = true;
+      btnText.innerText = '마음 전송 중...';
+      errorMsg.classList.add('hidden');
+
+      const formData = {
+        nickname: document.getElementById('nickname').value.trim(),
+        idolName: document.getElementById('idolName').value.trim(),
+        startDate: document.getElementById('startDate').value.trim(),
+        reason: document.getElementById('reason').value.trim(),
+        charmPoint: document.getElementById('charmPoint').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        secretMessage: document.getElementById('secretMessage').value.trim()
+      };
+
+      // Apps Script 서버 함수 실행
+      google.script.run
+        .withSuccessHandler(function(response) {
+          if (response && response.success) {
+            document.getElementById('formSection').classList.add('hidden');
+            document.getElementById('doneSection').classList.remove('hidden');
+          } else {
+            showError();
+          }
+        })
+        .withFailureHandler(function() {
+          showError();
+        })
+        .submitFavorite(formData);
+    }
+
+    function showError() {
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const errorMsg = document.getElementById('errorMsg');
+
+      submitBtn.disabled = false;
+      btnText.innerText = '마음 전송하기';
+      errorMsg.classList.remove('hidden');
+    }
+
+    function resetForm() {
+      document.getElementById('idolName').value = '';
+      document.getElementById('startDate').value = '';
+      document.getElementById('reason').value = '';
+      document.getElementById('charmPoint').value = '';
+      document.getElementById('message').value = '';
+      document.getElementById('secretMessage').value = '';
+
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      submitBtn.disabled = false;
+      btnText.innerText = '마음 전송하기';
+
+      document.getElementById('doneSection').classList.add('hidden');
+      document.getElementById('formSection').classList.remove('hidden');
+    }
+
+    function copyShareUrl() {
+      const urlInput = document.getElementById('shareUrlInput');
+      const copyBtn = document.getElementById('copyBtn');
+
+      navigator.clipboard.writeText(urlInput.value).then(() => {
+        copyBtn.innerText = '복사됨!';
+        setTimeout(() => {
+          copyBtn.innerText = '복사';
+        }, 2000);
+      }).catch(() => {
+        urlInput.select();
+        document.execCommand('copy');
+        alert('주소가 복사되었습니다.');
+      });
+    }
+  </script>
+</body>
+</html>

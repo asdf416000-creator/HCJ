@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>만족도 및 피드백 설문조사</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    .survey-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 540px;
+      border-radius: 16px;
+      padding: 36px 28px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    .header-area {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ebf8ff;
+      color: #3182ce;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a202c;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #718096;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+
+    .required {
+      color: #e53e3e;
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: #fafafa;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #4299e1;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* 5점 척도 버튼 */
+    .rating-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .rating-option {
+      flex: 1;
+    }
+
+    .rating-option input[type="radio"] {
+      display: none;
+    }
+
+    .rating-option label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #4a5568;
+      cursor: pointer;
+      background: #fafafa;
+      transition: all 0.2s;
+    }
+
+    .rating-option input[type="radio"]:checked + label {
+      background: #3182ce;
+      color: #ffffff;
+      border-color: #3182ce;
+      box-shadow: 0 4px 10px rgba(49, 130, 206, 0.3);
+    }
+
+    .rating-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #a0aec0;
+      margin-top: 6px;
+      padding: 0 4px;
+    }
+
+    /* 라디오 버튼 그룹 */
+    .radio-pill-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .radio-pill {
+      flex: 1;
+    }
+
+    .radio-pill input[type="radio"] {
+      display: none;
+    }
+
+    .radio-pill label {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4a5568;
+      cursor: pointer;
+      background: #fafafa;
+      transition: all 0.2s;
+    }
+
+    .radio-pill input[type="radio"]:checked + label {
+      background: #ebf8ff;
+      color: #2b6cb0;
+      border-color: #4299e1;
+      font-weight: 700;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #3182ce;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background: #2b6cb0;
+    }
+
+    .submit-btn:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+    }
+
+    /* 공유 및 QR 코드 영역 */
+    .share-container {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .share-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #718096;
+      margin-bottom: 12px;
+    }
+
+    .copy-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .url-input {
+      flex: 1;
+      padding: 10px;
+      font-size: 13px;
+      color: #4a5568;
+      background-color: #edf2f7;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      outline: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .copy-btn {
+      padding: 10px 14px;
+      background-color: #edf2f7;
+      color: #2d3748;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .qr-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qr-image {
+      width: 140px;
+      height: 140px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 6px;
+      background: #ffffff;
+    }
+
+    .qr-guide {
+      font-size: 12px;
+      color: #a0aec0;
+    }
+
+    /* 완료 화면 */
+    .completion-view {
+      display: none;
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .check-icon {
+      width: 64px;
+      height: 64px;
+      background: #c6f6d5;
+      color: #276749;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 20px;
+      font-weight: bold;
+    }
+
+    .complete-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 8px;
+    }
+
+    .complete-desc {
+      font-size: 14px;
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    .error-msg {
+      color: #e53e3e;
+      font-size: 13px;
+      margin-top: 10px;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="survey-card">
+    <!-- 설문 작성 영역 -->
+    <div id="surveyFormArea">
+      <div class="header-area">
+        <span class="badge">FEEDBACK SURVEY</span>
+        <h1>만족도 및 의견 조사</h1>
+        <p class="desc">소중한 의견을 남겨주시면 향후 프로그램 개선에 큰 도움이 됩니다.</p>
+      </div>
+
+      <form id="surveyForm" onsubmit="handleSurveySubmit(event)">
+        <!-- 1. 성함/소속 (선택) -->
+        <div class="form-group">
+          <label class="field-label" for="respondent">이름 또는 소속 (선택)</label>
+          <input type="text" id="respondent" name="respondent" placeholder="미입력 시 익명으로 접수됩니다">
+        </div>
+
+        <!-- 2. 전반적 만족도 (5점 척도) -->
+        <div class="form-group">
+          <label class="field-label">1. 전반적인 만족도는 어떠셨나요?<span class="required">*</span></label>
+          <div class="rating-group">
+            <div class="rating-option">
+              <input type="radio" id="r1" name="rating" value="1" required>
+              <label for="r1">1</label>
+            </div>
+            <div class="rating-option">
+              <input type="radio" id="r2" name="rating" value="2">
+              <label for="r2">2</label>
+            </div>
+            <div class="rating-option">
+              <input type="radio" id="r3" name="rating" value="3">
+              <label for="r3">3</label>
+            </div>
+            <div class="rating-option">
+              <input type="radio" id="r4" name="rating" value="4">
+              <label for="r4">4</label>
+            </div>
+            <div class="rating-option">
+              <input type="radio" id="r5" name="rating" value="5">
+              <label for="r5">5</label>
+            </div>
+          </div>
+          <div class="rating-labels">
+            <span>매우 불만족</span>
+            <span>매우 만족</span>
+          </div>
+        </div>
+
+        <!-- 3. 가장 유익했던 점 -->
+        <div class="form-group">
+          <label class="field-label" for="bestTopic">2. 가장 유익했거나 기억에 남는 내용은?<span class="required">*</span></label>
+          <input type="text" id="bestTopic" name="bestTopic" placeholder="예: 실습 세션, 강의 내용 등" required>
+        </div>
+
+        <!-- 4. 개선 및 건의사항 -->
+        <div class="form-group">
+          <label class="field-label" for="feedback">3. 개선이 필요하거나 바라는 점</label>
+          <textarea id="feedback" name="feedback" placeholder="자유롭게 건의사항을 작성해주세요"></textarea>
+        </div>
+
+        <!-- 5. 추천 의향 -->
+        <div class="form-group">
+          <label class="field-label">4. 지인이나 동료에게 추천하고 싶으신가요?<span class="required">*</span></label>
+          <div class="radio-pill-group">
+            <div class="radio-pill">
+              <input type="radio" id="recYes" name="recommend" value="적극 추천" required>
+              <label for="recYes">적극 추천</label>
+            </div>
+            <div class="radio-pill">
+              <input type="radio" id="recNormal" name="recommend" value="보통">
+              <label for="recNormal">보통</label>
+            </div>
+            <div class="radio-pill">
+              <input type="radio" id="recNo" name="recommend" value="추천하지 않음">
+              <label for="recNo">비추천</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="submit-btn">설문 제출하기</button>
+        <p id="errorMsg" class="error-msg">제출 중 문제가 발생했습니다. 다시 시도해주세요.</p>
+      </form>
+
+      <!-- 접속 주소 복사 및 QR 코드 영역 -->
+      <div class="share-container">
+        <div class="share-title">설문지 접속 링크 공유</div>
+        <div class="copy-box">
+          <input type="text" id="shareUrl" class="url-input" readonly>
+          <button type="button" class="copy-btn" id="copyBtn" onclick="copyAddress()">주소 복사</button>
+        </div>
+
+        <div class="qr-wrapper">
+          <img id="qrImage" class="qr-image" src="" alt="설문지 QR코드">
+          <span class="qr-guide">스마트폰 카메라로 스캔하여 참여</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 제출 완료 안내 -->
+    <div id="completionArea" class="completion-view">
+      <div class="check-icon">✓</div>
+      <div class="complete-title">설문이 성공적으로 접수되었습니다!</div>
+      <p class="complete-desc">
+        소중한 피드백을 전달해 주셔서 대단히 감사합니다.<br>
+        더 나은 프로그램을 만드는 데 소중히 활용하겠습니다.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 페이지 로드시 현재 웹앱 주소를 가져와 QR 생성 및 복사창에 삽입
+    window.addEventListener('DOMContentLoaded', function() {
+      const currentUrl = window.location.href;
+      document.getElementById('shareUrl').value = currentUrl;
+      
+      const qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(currentUrl);
+      document.getElementById('qrImage').src = qrApiUrl;
+    });
+
+    function handleSurveySubmit(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = '제출 중입니다...';
+      errorMsg.style.display = 'none';
+
+      const formData = {
+        respondent: document.getElementById('respondent').value.trim(),
+        rating: document.querySelector('input[name="rating"]:checked') ? document.querySelector('input[name="rating"]:checked').value : '',
+        bestTopic: document.getElementById('bestTopic').value.trim(),
+        feedback: document.getElementById('feedback').value.trim(),
+        recommend: document.querySelector('input[name="recommend"]:checked') ? document.querySelector('input[name="recommend"]:checked').value : ''
+      };
+
+      google.script.run
+        .withSuccessHandler(function(response) {
+          if (response && response.success) {
+            document.getElementById('surveyFormArea').style.display = 'none';
+            document.getElementById('completionArea').style.display = 'block';
+          } else {
+            showError();
+          }
+        })
+        .withFailureHandler(function() {
+          showError();
+        })
+        .submitSurvey(formData);
+    }
+
+    function showError() {
+      const submitBtn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+      submitBtn.disabled = false;
+      submitBtn.innerText = '설문 제출하기';
+      errorMsg.style.display = 'block';
+    }
+
+    function copyAddress() {
+      const urlInput = document.getElementById('shareUrl');
+      const copyBtn = document.getElementById('copyBtn');
+
+      navigator.clipboard.writeText(urlInput.value).then(() => {
+        copyBtn.innerText = '복사 완료!';
+        copyBtn.style.backgroundColor = '#38a169';
+        copyBtn.style.color = '#ffffff';
+        copyBtn.style.borderColor = '#38a169';
+
+        setTimeout(() => {
+          copyBtn.innerText = '주소 복사';
+          copyBtn.style.backgroundColor = '#edf2f7';
+          copyBtn.style.color = '#2d3748';
+          copyBtn.style.borderColor = '#cbd5e0';
+        }, 2000);
+      }).catch(() => {
+        urlInput.select();
+        document.execCommand('copy');
+        alert('주소가 복사되었습니다.');
+      });
+    }
+  </script>
+</body>
+</html>
