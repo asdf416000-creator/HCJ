@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEE SU DONG | Global IT Engineer Portfolio</title>
+    <meta name="description" content="컴퓨터공학 전공, K-MOVE 일본 AI & IT 양성과정에 참여 중인 신입 엔지니어 이수동의 포트폴리오입니다. JLPT N2, 클린 코드와 글로벌 커뮤니케이션 역량을 갖춘 개발자를 소개합니다.">
+    <meta name="author" content="이수동">
+    <!-- Open Graph (카카오톡/슬랙 등 공유 시 미리보기) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LEE SU DONG | Global IT Engineer Portfolio">
+    <meta property="og:description" content="일본 IT 시장 진출을 준비하는 신입 엔지니어 이수동의 포트폴리오">
+    <meta property="og:image" content="images/profile.jpg">
+    <!-- 파비콘 (별도 파일 없이 이모지로 대체) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <!-- 구글 폰트 (Noto Sans KR & Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS 변수 선언: 테마 컬러 관리 */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #6366f1;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
+        /* 기본 초기화 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { 
+            font-family: 'Noto Sans KR', 'Montserrat', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden; 
+        }
+
+        /* 네비게이션 헤더 */
+        header {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 4rem; z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-size: 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 900; letter-spacing: 2px; color: var(--text-main); cursor: pointer; }
+        .logo span { color: var(--accent-blue); }
+        nav { display: flex; gap: 2rem; }
+        nav a {
+            text-decoration: none;
+            color: var(--text-sub); font-family: 'Montserrat', sans-serif; font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--accent-blue); }
+
+        /* 모바일 햄버거 버튼 */
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; z-index: 1100; padding: 8px;
+        }
+        .hamburger span {
+            width: 26px; height: 2px; background: var(--text-main); transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* 공통 스타일 */
+        section { 
+            padding: 120px 4rem 80px 4rem; 
+            min-height: 100vh; 
+            display: flex; flex-direction: column; justify-content: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem; font-weight: 900; margin-bottom: 3rem; text-align: center;
+            letter-spacing: -1px;
+        }
+        .section-title span { color: var(--accent-blue); }
+
+        /* 페이드인 애니메이션 클래스 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 1. 히어로 섹션 (Hero) */
+        #home {
+            position: relative; overflow: hidden;
+            display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 4rem;
+        }
+        /* 배경 그라데이션 */
+        .bg-glow {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;
+            background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.15) 0%, transparent 40%);
+        }
+        .hero-text h2 { font-size: 1.2rem; color: var(--accent-blue); font-weight: 700; margin-bottom: 1rem; letter-spacing: 1px; }
+        .hero-text h1 { font-size: 3.5rem; font-weight: 900; line-height: 1.3; margin-bottom: 1.5rem; word-break: keep-all; }
+        .hero-text p { font-size: 1.15rem; color: var(--text-sub); margin-bottom: 2.5rem; max-width: 600px; word-break: keep-all; }
+        
+        /* 비디오 및 이미지 홀더 영역 */
+        .hero-media {
+            position: relative; width: 100%; height: 450px;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .hero-media img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .hero-media:hover img { transform: scale(1.05); }
+
+        .btn-group { display: flex; gap: 1rem; }
+        .btn {
+            padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none;
+            transition: all 0.3s ease; display: inline-block; text-align: center;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-indigo), var(--accent-blue)); color: white; border: none; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5); }
+        .btn-secondary { border: 2px solid var(--text-sub); color: var(--text-main); background: transparent; }
+        .btn-secondary:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-3px); }
+
+        /* 2. 어바웃 섹션 (About Me) */
+        #about { background-color: rgba(255, 255, 255, 0.01); border-radius: 40px; margin-top: 50px;}
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+        .profile-img-container {
+            width: 100%; aspect-ratio: 1; border-radius: 20px; overflow: hidden;
+            border: 2px dashed var(--accent-indigo); padding: 10px;
+            background-color: var(--bg-card);
+        }
+        .profile-img-container img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 12px;
+        }
+
+        .about-content h3 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .p-lead { color: var(--accent-blue); font-weight: 700; margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+        /* 세련된 3열 정보 배치 그리드 */
+        .about-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2rem; }
+        .detail-item { background: var(--bg-card); padding: 1.5rem; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255,255,255,0.05); }
+        .detail-item h4 { font-family: 'Montserrat', sans-serif; color: var(--accent-blue); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .detail-item p { font-size: 1rem; font-weight: 700; line-height: 1.4; }
+        .detail-sub { font-size: 0.8rem; color: var(--text-sub); margin-top: 8px; display: block; font-weight: 400; line-height: 1.4;}
+        
+        .hobby-images { display: flex; gap: 10px; margin-bottom: 10px; }
+        .hobby-images img {
+            flex: 1; aspect-ratio: 16/10; border-radius: 8px; object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hobby-images img:hover { transform: scale(1.08); box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10;}
+
+        /* 3. 핵심 역량 (Core Competencies) */
+        .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .comp-card {
+            background: var(--bg-card); padding: 3rem; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease;
+        }
+        .comp-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .comp-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .comp-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .comp-list { list-style: none; }
+        .comp-list li { margin-bottom: 0.8rem; position: relative; padding-left: 1.8rem; color: var(--text-sub); word-break: keep-all;}
+        .comp-list li::before {
+            content: "✓"; position: absolute; left: 0; color: var(--accent-blue); font-weight: bold;
+        }
+
+        /* 4. 성장 로드맵 (Roadmap/Timeline) */
+        #roadmap { background-color: rgba(255, 255, 255, 0.01); border-radius: 40px; margin-top: 50px;}
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 2rem 0; width: 100%; }
+        .timeline::after {
+            content: ''; position: absolute; width: 2px; background: var(--bg-card);
+            top: 0; bottom: 0; left: 50%; margin-left: -1px;
+        }
+        .time-container { padding: 10px 50px; position: relative; background-color: inherit; width: 50%; }
+        .time-container::after {
+            content: ''; position: absolute; width: 20px; height: 20px; right: -10px;
+            background-color: var(--bg-dark); border: 4px solid var(--accent-blue);
+            top: 15px; border-radius: 50%; z-index: 1;
+        }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+        
+        .time-content {
+            padding: 2rem; background: var(--bg-card); position: relative; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: transform 0.3s ease;
+        }
+        .time-content:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.1); }
+        .time-content h3 { font-family: 'Montserrat', sans-serif; color: var(--accent-blue); font-size: 1rem; margin-bottom: 0.5rem; }
+        .time-content h4 { font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700; }
+        .time-content p { color: var(--text-sub); font-size: 0.95rem; word-break: keep-all; }
+
+        /* 5. 연락처 (Contact) */
+        .contact-box {
+            max-width: 700px; margin: 0 auto; text-align: center;
+            background: var(--bg-card); padding: 4rem; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .contact-box p { color: var(--text-sub); margin-bottom: 2.5rem; font-size: 1.1rem; word-break: keep-all;}
+        .contact-info { margin-top: 2rem; color: var(--text-sub); font-size: 1rem; }
+        .contact-info a { color: var(--accent-blue); text-decoration: none; transition: color 0.3s; }
+        .contact-info a:hover { color: var(--accent-indigo); text-decoration: underline; }
+
+        /* 푸터 */
+        footer {
+            text-align: center; padding: 2.5rem; background-color: #0b0f19;
+            border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-sub);
+            font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 최적화 */
+        @media (max-width: 1024px) {
+            header { padding: 0 2rem; }
+            section { padding: 100px 2rem 60px 2rem; }
+            #home { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-text p { margin: 0 auto 2.5rem auto; }
+            .btn-group { justify-content: center; }
+            
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .profile-img-container { max-width: 400px; margin: 0 auto; }
+            .about-details { grid-template-columns: 1fr; }
+            
+            .comp-grid { grid-template-columns: 1fr; }
+            
+            /* 타임라인 모바일 최적화 */
+            .timeline::after { left: 20px; }
+            .time-container { width: 100%; padding-left: 50px; padding-right: 0; }
+            .time-container::after { left: 10px; }
+            .right { left: 0%; }
+        }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            header nav {
+                position: fixed; top: 80px; left: 0; width: 100%;
+                background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(12px);
+                flex-direction: column; align-items: center; gap: 0;
+                max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            header nav.open { max-height: 400px; }
+            header nav a { padding: 1.1rem 0; width: 100%; text-align: center; }
+            header nav a:hover { background: rgba(255,255,255,0.03); }
+            .hero-text h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 고정 헤더 -->
+    <header>
+        <div class="logo" onclick="window.scrollTo(0,0)">PORT<span>FOLIO</span></div>
+        <nav id="mainNav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#competence">Competence</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- 1. 히어로 섹션 -->
+    <section id="home">
+        <div class="bg-glow"></div>
+        <div class="hero-text fade-in">
+            <h2>K-MOVE JAPAN AI & IT ENGINEER</h2>
+            <h1>국경을 넘어,<br>가치를 만드는 개발자</h1>
+            <p>
+                컴퓨터공학 전공의 견고한 학업적 지식과 글로벌 감각을 융합하여, 일본 IT 시장에 즉시 전력감으로 공헌할 신입 엔지니어 이수동입니다.
+            </p>
+            <div class="btn-group">
+                <a href="#about" class="btn btn-primary">자세히 알아보기</a>
+                <a href="#contact" class="btn btn-secondary">연락하기</a>
+            </div>
+        </div>
+        
+        <div class="hero-media fade-in">
+            <!-- onerror 이벤트를 통해 로컬 이미지가 없을 경우 멋진 대체 이미지를 띄웁니다 -->
+            <img src="images/image1.webp" alt="Tokyo Coding Anime Style" id="heroImg" onerror="useFallbackImage()">
+        </div>
+    </section>
+
+    <!-- 2. 어바웃 섹션 -->
+    <section id="about">
+        <h2 class="section-title fade-in">ABOUT <span>ME</span></h2>
+        <div class="about-grid">
+            <div class="profile-img-container fade-in">
+                <!-- 프로필 이미지 태그 추가 완료 -->
+                <img src="images/profile.jpg" alt="이수동 프로필" id="profileImg" onerror="useProfileFallbackImage()">
+            </div>
+            <div class="about-content fade-in">
+                <h3>안녕하세요, 이수동입니다.</h3>
+                <p class="p-lead">경성대학교 컴퓨터공학과 4학년 재학 중</p>
+                <p style="color: var(--text-sub);">
+                    대학에서 습득한 탄탄한 컴퓨터사이언스(CS) 지식을 기반으로 하여, 단순히 코드만 짜는 개발자가 아닌 '글로벌 비즈니스의 성장'을 주도하는 엔지니어가 되고자 합니다.<br><br>
+                    현재 산업인력공단이 주관하는 해외 취업 프로그램인 <strong>K-MOVE 일본 AI & IT 양성과정</strong>에 참여하여 매일 한계를 넘는 성장을 거듭하고 있습니다.
+                </p>
+                
+                <!-- 3열 배치 프로필 요약 카드 영역 -->
+                <div class="about-details">
+                    <div class="detail-item">
+                        <h4>Major</h4>
+                        <p>컴퓨터공학과</p>
+                        <span class="detail-sub">(4학년 재학 중)</span>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Language</h4>
+                        <p>JLPT N2</p>
+                        <span class="detail-sub">(일본어 비즈니스 대화)</span>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Hobbies</h4>
+                        <div class="hobby-images">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE2Mx7AT9JIDkR3ygSaLeyJyaQ9q6GUENEtuKCcaLtM3NGaJJHOVPY9f8&s=10" alt="콘서트 감상">
+                            <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=600&q=80" alt="Gaming Setup">
+                        </div>
+                        <span class="detail-sub">Mrs. GREEN APPLE · Novelbright · 優里</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 핵심 역량 섹션 -->
+    <section id="competence">
+        <h2 class="section-title fade-in">CORE <span>COMPETENCE</span></h2>
+        <div class="comp-grid">
+            <div class="comp-card fade-in">
+                <div class="comp-icon">💻</div>
+                <h3>CS & IT 기술 기초</h3>
+                <p style="color:var(--text-sub); margin-bottom:1.5rem;">4년간 다져온 학업적 성과와 최신 AI 트렌드를 현업 실무에 적용합니다.</p>
+                <ul class="comp-list">
+                    <li>컴퓨터공학과 전공 지식 (알고리즘, 자료구조, 데이터베이스)</li>
+                    <li>K-MOVE 연계 실무 수준의 AI & Web/App 개발 프레임워크 트레이닝</li>
+                    <li>깨끗하고 유지보수하기 쉬운 클린 코드(Clean Code) 개발 지향</li>
+                </ul>
+            </div>
+            <div class="comp-card fade-in">
+                <div class="comp-icon">🇯🇵</div>
+                <h3>일본어 및 글로벌 소통력</h3>
+                <p style="color:var(--text-sub); margin-bottom:1.5rem;">기술적 해결 능력을 현지 언어로 유연하게 표현할 수 있는 인프라입니다.</p>
+                <ul class="comp-list">
+                    <li><strong>JLPT N2 자격증 보유</strong> (검증된 비즈니스 커뮤니케이션 능력)</li>
+                    <li>K-MOVE 과정 내 <strong>일본어 심화반 교육 중</strong> </li>
+                    <li>일본 현지 기업 문화 및 비즈니스 매너에 대한 폭넓은 이해</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 로드맵 섹션 -->
+    <section id="roadmap">
+        <h2 class="section-title fade-in">MY <span>ROADMAP</span></h2>
+        <div class="timeline">
+            <div class="time-container left fade-in">
+                <div class="time-content">
+                    <h3>2026 ~ Present</h3>
+                    <h4>K-MOVE 연수 & 역량 집중</h4>
+                    <p>일본 AI & IT 양성과정에 적극적으로 참여하여 차세대 개발자가 되기 위한 기술적·언어적 트레이닝 매진 중.</p>
+                </div>
+            </div>
+            <div class="time-container right fade-in">
+                <div class="time-content">
+                    <h3>Q4, 2026</h3>
+                    <h4>JLPT N1 취득</h4>
+                    <p>12월 시험을 목표로 준비 중. 단순 의사소통을 넘어, 현지 동료들과 기술 아키텍처 설계를 깊이 있게 논의할 수 있는 확실한 어학 자격 확보.</p>
+                </div>
+            </div>
+            <div class="time-container left fade-in">
+                <div class="time-content">
+                    <h3>2027 ~</h3>
+                    <h4>일본 현지 IT 기업 취업 & 도약</h4>
+                    <p>도쿄/오사카 등의 매력적인 글로벌 테크 기업 및 SI 선도 기업에 입사하여, 전공 역량과 언어 능력을 십분 발휘하는 글로벌 주니어 개발자로 성장.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 콘택트 섹션 -->
+    <section id="contact">
+        <h2 class="section-title fade-in">LET'S <span>WORK TOGETHER</span></h2>
+        <div class="contact-box fade-in">
+            <p>
+                준비된 글로벌 IT 인재, 이수동의 문은 언제나 열려 있습니다.<br>
+                채용 제안이나 기술적 소통은 아래 이메일로 편하게 연락 주시기 바랍니다.
+            </p>
+            <a href="mailto:asdf416000@gmail.com" class="btn btn-primary">이메일 보내기</a>
+            
+            <div class="contact-info">
+                <p>Email : <a href="mailto:asdf416000@gmail.com">asdf416000@gmail.com</a></p>
+                <!-- GitHub 링크를 클릭 가능하도록 a 태그 적용 -->
+                <p>GitHub : <a href="https://github.com/asdf416000-creator" target="_blank" rel="noopener noreferrer">github.com/asdf416000-creator</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2026 LEE SU DONG. All rights reserved.<br>Developed with passion & global vision.</p>
+    </footer>
+
+    <!-- 스크롤 애니메이션 및 이미지 폴백 스크립트 -->
+    <script>
+        // 페이지 로드 시 스크롤 위치를 맨 위로 고정
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        window.addEventListener('DOMContentLoaded', (event) => {
+            window.scrollTo(0, 0); 
+        });
+
+        // 1. 메인 이미지가 없을 경우 대체할 이미지
+        function useFallbackImage() {
+            const fallbackUrl = "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1000&auto=format&fit=crop";
+            document.getElementById('heroImg').src = fallbackUrl;
+        }
+
+        // 2. 프로필 사진이 로컬에 없을 경우 대체할 이미지
+        function useProfileFallbackImage() {
+            const profileFallbackUrl = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=500&q=80";
+            document.getElementById('profileImg').src = profileFallbackUrl;
+        }
+
+        // 3. 모바일 햄버거 메뉴 토글
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mainNav = document.getElementById('mainNav');
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = mainNav.classList.toggle('open');
+            hamburgerBtn.classList.toggle('open', isOpen);
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+        });
+        // 메뉴 항목 클릭 시 자동으로 닫기
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('open');
+                hamburgerBtn.classList.remove('open');
+                hamburgerBtn.setAttribute('aria-expanded', false);
+            });
+        });
+
+        // 4. 스크롤 페이드인 인터랙션 구현
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+</html>
